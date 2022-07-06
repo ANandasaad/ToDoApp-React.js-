@@ -22,7 +22,8 @@ export default class Todo extends Component {
 
   handleSubmit = () => {
     this.setState({
-      tasks:[...this.state.tasks,{task:this.state.curTask,id:this.state.tasks.length+1}]
+      tasks:[...this.state.tasks,{task:this.state.curTask,id:this.state.tasks.length+1}],
+      curTask: "",
     })
   }
   handleDeleteTasks = (id) => {
