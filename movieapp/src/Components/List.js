@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { movies } from "./getMovies";
+import axios from 'axios'
 export default class List extends Component {
   constructor() {
     super();
     this.state = {
       hover: "",
+      parr:[1],
     };
   }
 
@@ -19,6 +21,12 @@ export default class List extends Component {
         hover: '',
       });
   };
+  async componentDidMount()
+  {
+    let res= await axios.get("https://api.themoviedb.org/3/movie/550?api_key=4cb4c44433f75c721fa2b130d2e1c438&language=en-US&page=1");
+    console.log(res.data);
+
+  }
   render() {
     let movie = movies.results; //fetch
     return (
@@ -54,7 +62,7 @@ export default class List extends Component {
                       </p> */}
                   <div className="button-wrapper">
                     {this.state.hover == movieObj.id && 
-                      <a href="#" class="btn btn-primary movie-button">
+                      <a href="#" class="btn btn-danger movie-button">
                         Add to Favourites
                       </a>
                     }
@@ -64,29 +72,23 @@ export default class List extends Component {
             </div>
             <div className="pagination">
               <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <a className ="page-link" href="#">
                       Previous
                     </a>
                   </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
+                  {
+                    this.state.parr.map((pageNum)=>(
+                      <li>
+                        <a className="page-item">
+                          <a className="page-link" href="#"></a>
+                        </a>
+                      </li>
+                    ))
+                    }
+                  <li className="page-item">
+                    <a className="page-link" href="#">
                       Next
                     </a>
                   </li>
