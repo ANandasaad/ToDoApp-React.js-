@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import API_KEY from "../secrets";
-export default class Favourites extends Component {
+export default class Favourite extends Component {
   constructor() {
     super();
     this.state = {
